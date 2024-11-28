@@ -12,7 +12,7 @@ export interface IValidator {
             max_change_rate: string
             max_rate: string
             rate: string
-        },A
+        },
         update_time: string
     },
     consensus_pubkey: {
