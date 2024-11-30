@@ -3,7 +3,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { BondStatus } from "../../types/types";
 import { getValidatorsList } from "../../servises/get-validators-list/getValidatorsList";
 import { AccordionDetails, AccordionSummary, Typography } from "@mui/material";
-import cls from './MonikerDetails.module.css'
+import cls from './MonikerDetails.module.scss'
 import * as React from "react";
 
 interface MonikerDetailsProps {

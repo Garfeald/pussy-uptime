@@ -48,3 +48,29 @@ export interface IValidatorStateList {
 }
 
 export type BondStatus = 'BOND_STATUS_BONDED' | 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING'
+
+export interface IConsensusParams {
+    jsonrpc: string,
+    id: number,
+    result: {
+        block_height: string,
+        consensus_params: {
+            block: {
+                max_bytes: string,
+                max_gas: string,
+                time_iota_ms: string
+            },
+            evidence: {
+                max_age_num_blocks: string,
+                max_age_duration: string,
+                max_bytes: string
+            },
+            validator: {
+                pub_key_types: [
+                    string
+                ]
+            },
+            version: {}
+        }
+    }
+}

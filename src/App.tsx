@@ -2,21 +2,17 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import pussy from '../public/large-purple-circle.23506e149e.png'
-import './App.css'
+import './components/footer/Header.module.scss'
 import { ViewValidators } from "./components/view-validators/ViewValidators";
+import Header from "./components/footer/Header";
+import cls from './App.module.scss'
 
 function App() {
     return (
-        <>
-            <div>
-                {/*rgb(246, 43, 253)*/}
-                <div>
-                    <h1 style={{ color: 'rgb(246, 43, 253)' }}>Space-pussy</h1>
-                </div>
-                <img src={pussy} className="logo" alt="Vite logo"/>
-            </div>
+        <div className={cls.app}>
+            <Header/>
             <ViewValidators/>
-        </>
+        </div>
     )
 }
 
