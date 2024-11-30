@@ -1,0 +1,17 @@
+.unbonded_wrapper {
+  margin-top: 20px;
+}
+
+.unbonded {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin-top: 20px;
+
+  & p {
+    width: 200px;
+    font-weight: 500;
+    color: rgba(36, 121, 215, 0.68);
+  }
+}

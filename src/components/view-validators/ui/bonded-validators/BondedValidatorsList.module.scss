@@ -1,0 +1,11 @@
+.bonded {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+
+  & p {
+    width: 200px;
+    font-weight: 500;
+  }
+}
