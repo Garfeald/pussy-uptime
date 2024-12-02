@@ -1,5 +1,5 @@
 import cls from './Header.module.scss'
-import pussy from "../../../public/large-purple-circle.23506e149e.png";
+import { ReactComponent as Logo } from "../../assets/pussy_logo.svg";
 import { getBlockchainInfo } from "../../servises/get-blockchain-info/getBlockchainInfo";
 import { memo, useEffect, useState } from "react";
 
@@ -29,7 +29,7 @@ const Header = memo(() => {
         <div className={cls.Header}>
             <div className={cls.logoWrapper}>
                 <div>
-                    <img src={pussy} className={cls.logo} alt="Vite logo"/>
+                    <Logo className={cls.logo} width={45} height={45}/>
                 </div>
                 <div>
                     <p

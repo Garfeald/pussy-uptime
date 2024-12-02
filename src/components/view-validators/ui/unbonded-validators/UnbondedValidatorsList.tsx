@@ -25,7 +25,7 @@ const UnbondedValidatorsList = (props: BondedValidatorsListProps) => {
                 </Button>
                 {show && <div className={cls.unbonded}>
                     {validators.map((valid, index) => {
-                        return <p>{`${index + 1}.${valid.description.moniker}`}</p>
+                        return <p key={index}>{`${index + 1}.${valid.description.moniker}`}</p>
                     })}
                 </div>}
             </div>

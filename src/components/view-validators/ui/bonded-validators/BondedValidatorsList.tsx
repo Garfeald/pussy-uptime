@@ -14,7 +14,7 @@ const BondedValidatorsList = (props: BondedValidatorsListProps) => {
         return (
             <div className={cls.bonded}>
                 {validators.map((valid, index) => {
-                    return <p>{`${index + 1}.${valid.description.moniker}`}</p>
+                    return <p key={index}>{`${index + 1}.${valid.description.moniker}`}</p>
                 })}
             </div>
         );
