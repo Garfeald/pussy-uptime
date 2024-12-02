@@ -1,21 +1,20 @@
 import cls from './Header.module.scss'
 import { ReactComponent as Logo } from "../../assets/pussy_logo.svg";
-import { getBlockchainInfo } from "../../servises/get-blockchain-info/getBlockchainInfo";
-import { memo, useState } from "react";
+import { memo } from "react";
 
 const Header = memo(() => {
 
-    const [lastHeight, setLastHeight] = useState<string>('')
+    // const [lastHeight, setLastHeight] = useState<string>('')
 
-    const interval = 5000;
+    // const interval = 5000;
 
-    const getBlockchainData = async () => {
-        return await getBlockchainInfo().then(res => {
-            if (res.data?.result?.last_height) {
-                setLastHeight(res.data?.result?.last_height)
-            }
-        })
-    }
+    // const getBlockchainData = async () => {
+    //     return await getBlockchainInfo().then(res => {
+    //         if (res.data?.result?.last_height) {
+    //             setLastHeight(res.data?.result?.last_height)
+    //         }
+    //     })
+    // }
 
     // useEffect(() => {
     //     getBlockchainData()

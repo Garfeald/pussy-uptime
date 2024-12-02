@@ -16,7 +16,7 @@ export const ViewValidators = () => {
 
     const [preCommits, setPreCommits] = useState<Array<string>>()
 
-    const [filteredValidators, setFilteredValidators] = useState<Array<{moniker: string, isSkips: boolean}>>(null)
+    const [filteredValidators, setFilteredValidators] = useState<Array<{moniker: string, isSkips: boolean}>>([])
 
     // const handleChange = (status: BondStatus) => {
     //     if (status === expanded) {
@@ -68,9 +68,9 @@ export const ViewValidators = () => {
                 }
             })
         }
-        if (validators?.length && pubKeysOfMissed.length) {
-            const filteredValidators: Array<{moniker: string, isSkips}> = validators?.map(v => {
-                if (pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
+        if (validators?.length) {
+            const filteredValidators: Array<{moniker: string, isSkips: boolean}> = validators?.map(v => {
+                if (pubKeysOfMissed.length && pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
                     return {
                         moniker: v.description.moniker,
                         isSkips: true
