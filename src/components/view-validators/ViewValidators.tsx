@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IValidator } from "../../types/types";
+import { IRoundState, IValidator } from "../../types/types";
 import { getValidatorsList } from "../../servises/get-validators-list/getValidatorsList";
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
@@ -12,7 +12,11 @@ export const ViewValidators = () => {
 
     const [unbondedValidators, setUnbondedValidators] = useState<Array<IValidator> | null>(null)
 
-    // const [validatorState, setValidatorState] = useState<Array<IValidatorState>>()
+    const [roundState, setRoundState] = useState<IRoundState | null>(null)
+
+    const [preCommits, setPreCommits] = useState<Array<string>>()
+
+    const [filteredValidators, setFilteredValidators] = useState<Array<{moniker: string, isSkips: boolean}>>(null)
 
     // const handleChange = (status: BondStatus) => {
     //     if (status === expanded) {
@@ -42,8 +46,68 @@ export const ViewValidators = () => {
         //         setValidatorState(res.data.info)
         //     }
         // })
-        getConsensusState()
+
     }, [])
+
+
+
+    const getFilteredValidators = () => {
+        const indexesOfMissed: Array<number> = []
+        const pubKeysOfMissed: Array<string> = []
+        if (preCommits?.length) {
+            preCommits.map((pre, index ) => {
+                if (pre === "nil-Vote") {
+                    indexesOfMissed.push(index)
+                }
+            })
+        }
+        if (roundState?.last_validators && indexesOfMissed.length) {
+            roundState.last_validators.validators.map((val, index) => {
+                if (indexesOfMissed.includes(index)) {
+                    pubKeysOfMissed.push(val.pub_key.value)
+                }
+            })
+        }
+        if (validators?.length && pubKeysOfMissed.length) {
+            const filteredValidators: Array<{moniker: string, isSkips}> = validators?.map(v => {
+                if (pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
+                    return {
+                        moniker: v.description.moniker,
+                        isSkips: true
+                    }
+                } else return {
+                    moniker: v.description.moniker,
+                    isSkips: false
+                }
+            })
+            setFilteredValidators(filteredValidators)
+        }
+
+        return pubKeysOfMissed
+    }
+
+    const getConsensusData = async () => {
+        return await getConsensusState().then(res => {
+            if (res.data.result) {
+                setRoundState(res.data.result.round_state)
+                setPreCommits(res.data.result.round_state.last_commit.votes)
+            }
+        })
+    }
+
+    useEffect(() => {
+        getConsensusData()
+        const intervalId = setInterval(getConsensusData, 3000)
+
+        // Очищаем интервал при размонтировании компонента
+        return () => clearInterval(intervalId)
+    }, [])
+
+    useEffect(() => {
+        if (preCommits && roundState) {
+            getFilteredValidators()
+        }
+    }, [preCommits, roundState])
 
     // const testRR = () => {
     //     if (validators?.length) {
@@ -57,7 +121,7 @@ export const ViewValidators = () => {
     return (
         <div className={cls.ViewValidators}>
             <div>
-                <BondedValidatorsList validators={validators}/>
+                {!!filteredValidators && <BondedValidatorsList validators={filteredValidators}/>}
                 <UnbondedValidatorsList validators={unbondedValidators}/>
             </div>
         </div>

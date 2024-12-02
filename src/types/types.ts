@@ -47,7 +47,11 @@ export interface IValidatorStateList {
     info: Array<IValidatorState>
 }
 
-export type BondStatus = 'BOND_STATUS_BONDED' | 'BOND_STATUS_UNSPECIFIED' | 'BOND_STATUS_UNBONDED' | 'BOND_STATUS_UNBONDING'
+export type BondStatus =
+    'BOND_STATUS_BONDED'
+    | 'BOND_STATUS_UNSPECIFIED'
+    | 'BOND_STATUS_UNBONDED'
+    | 'BOND_STATUS_UNBONDING'
 
 export interface IConsensusParams {
     jsonrpc: string,
@@ -72,5 +76,121 @@ export interface IConsensusParams {
             },
             version: {}
         }
+    }
+}
+
+export interface IRoundState {
+    height: string,
+    round: number,
+    step: number,
+    start_time: string,
+    commit_time: string,
+    validators: {
+        validators: [
+            {
+                address: string,
+                pub_key: {
+                    type: string,
+                    value: string
+                },
+                voting_power: string,
+                proposer_priority: string
+            },
+        ],
+        proposer: {
+            address: string,
+            pub_key: {
+                type: string,
+                value: string
+            },
+            voting_power: string,
+            proposer_priority: string
+        }
+    },
+    proposal: string | null,
+    proposal_block: string | null,
+    proposal_block_parts: string | null,
+    locked_round: number,
+    locked_block: string | null,
+    locked_block_parts: string | null,
+    valid_round: number,
+    valid_block: string | null,
+    valid_block_parts: string | null,
+    votes: [
+        {
+            round: number,
+            prevotes: Array<string>,
+            prevotes_bit_array: string,
+            precommits: Array<string>,
+            precommits_bit_array: string
+        }
+    ],
+    commit_round: number,
+    last_commit: {
+        votes: Array<string>,
+        votes_bit_array: string,
+        peer_maj_23s: {}
+    },
+    last_validators: {
+        validators: [
+            {
+                address: string,
+                pub_key: {
+                    type: string,
+                    value: string
+                },
+                voting_power: string,
+                proposer_priority: string
+            },
+        ],
+        proposer: {
+            address: string,
+            pub_key: {
+                type: string,
+                value: string
+            },
+            voting_power: string,
+            proposer_priority: string
+        }
+    },
+    triggered_timeout_precommit: boolean
+}
+
+export interface IConsensusDumpState {
+    jsonrpc: string,
+    id: number,
+    result: {
+        round_state: IRoundState,
+        peers: [
+            {
+                node_address: string,
+                peer_state: {
+                    round_state: {
+                        height: string,
+                        round: number,
+                        step: number,
+                        start_time: string,
+                        proposal: boolean,
+                        proposal_block_part_set_header: {
+                            total: number,
+                            hash: string
+                        },
+                        proposal_block_parts: string | null,
+                        proposal_pol_round: number,
+                        proposal_pol: string
+                        prevotes: string,
+                        precommits: string,
+                        last_commit_round: number,
+                        last_commit: string,
+                        catchup_commit_round: number,
+                        catchup_commit: string
+                    },
+                    stats: {
+                        votes: string,
+                        block_parts: string
+                    }
+                }
+            },
+        ]
     }
 }

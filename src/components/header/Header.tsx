@@ -1,7 +1,7 @@
 import cls from './Header.module.scss'
 import { ReactComponent as Logo } from "../../assets/pussy_logo.svg";
 import { getBlockchainInfo } from "../../servises/get-blockchain-info/getBlockchainInfo";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 
 const Header = memo(() => {
 
@@ -17,13 +17,13 @@ const Header = memo(() => {
         })
     }
 
-    useEffect(() => {
-        getBlockchainData()
-        const intervalId = setInterval(getBlockchainData, interval)
-
-        // Очищаем интервал при размонтировании компонента
-        return () => clearInterval(intervalId)
-    }, [])
+    // useEffect(() => {
+    //     getBlockchainData()
+    //     const intervalId = setInterval(getBlockchainData, interval)
+    //
+    //     // Очищаем интервал при размонтировании компонента
+    //     return () => clearInterval(intervalId)
+    // }, [])
 
     return (
         <div className={cls.Header}>
@@ -39,13 +39,13 @@ const Header = memo(() => {
                     </p>
                 </div>
             </div>
-            <div>
-                <p
-                    className={cls.last_height}
-                >
-                    {`last block: ${lastHeight}`}
-                </p>
-            </div>
+            {/*<div>*/}
+            {/*    <p*/}
+            {/*        className={cls.last_height}*/}
+            {/*    >*/}
+            {/*        {`last block: ${lastHeight}`}*/}
+            {/*    </p>*/}
+            {/*</div>*/}
         </div>
     );
 });
