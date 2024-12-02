@@ -4,11 +4,18 @@
   justify-content: space-between;
   align-items: stretch;
   padding: 20px 20px 0 20px;
-  min-height: 850px;
+  min-height: 870px;
+  min-width: 1000px;
 }
 
 @media (max-width: 370px) {
   .app {
-    min-height: 600px;
+    min-height: 770px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .app {
+    min-width: 0;
   }
 }

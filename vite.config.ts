@@ -15,8 +15,6 @@ export default defineConfig({
     ],
     build: {
         outDir: "build",
-        emptyOutDir: true,
-        copyPublicDir: true,
         rollupOptions: {
             output: {
                 entryFileNames: "bundle.js",

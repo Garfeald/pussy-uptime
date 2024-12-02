@@ -1,3 +1,20 @@
 .footer {
-  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  & p {
+    margin-right: 15px;
+  }
+  & a {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 400px) {
+  .footer {
+    width: 100%;
+    padding-bottom: 20px;
+  }
 }

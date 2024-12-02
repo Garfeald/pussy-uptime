@@ -21,7 +21,7 @@ const UnbondedValidatorsList = (props: BondedValidatorsListProps) => {
                     variant='outlined'
                     onClick={() => setShow(!show)}
                 >
-                    {!show ? 'Show unbonded validators' : 'Hide unbonded validators'}
+                    {!show ? 'Heroes at rest' : 'Hide heroes'}
                 </Button>
                 {show && <div className={cls.unbonded}>
                     {validators.map((valid, index) => {

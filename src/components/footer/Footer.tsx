@@ -1,16 +1,19 @@
 import cls from './Footer.module.scss'
+import { ReactComponent as Telegram } from "../../assets/telegram.svg";
+import { Typography } from "@mui/material";
 
-interface FooterProps {
-    className?: string;
-}
-
-const Footer = (props: FooterProps) => {
-
-    const {} = props
+const Footer = () => {
 
     return (
         <div className={cls.footer}>
-            ©  2024  Made By Techstur
+            <Typography
+                component='p'
+            >
+                © 2024 Made By Techstur
+            </Typography>
+            <a href='tg://resolve?domain=techstur' target='_blank'>
+                <Telegram/>
+            </a>
         </div>
     );
 };

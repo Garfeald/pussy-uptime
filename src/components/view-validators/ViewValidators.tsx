@@ -3,8 +3,10 @@ import { IRoundState, IValidator } from "../../types/types";
 import { getValidatorsList } from "../../servises/get-validators-list/getValidatorsList";
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
-import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
 import { getConsensusState } from "../../servises/get-consensus-state/getConsensusState";
+import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
+import Preloader from "../preloader/Preloader";
+import { Typography } from "@mui/material";
 
 export const ViewValidators = () => {
 
@@ -16,19 +18,7 @@ export const ViewValidators = () => {
 
     const [preCommits, setPreCommits] = useState<Array<string>>()
 
-    const [filteredValidators, setFilteredValidators] = useState<Array<{moniker: string, isSkips: boolean}>>([])
-
-    // const handleChange = (status: BondStatus) => {
-    //     if (status === expanded) {
-    //         setExpanded(null)
-    //     } else setExpanded(status);
-    //     getValidatorsList(status).then(res => {
-    //         if (res.data.validators) {
-    //             const _monikers = res.data.validators.map(v => v.description.moniker)
-    //             setMonikers(_monikers)
-    //         }
-    //     }).catch(console.log)
-    // };
+    const [filteredValidators, setFilteredValidators] = useState<Array<{ moniker: string, isSkips: boolean }>>([])
 
     useEffect(() => {
         getValidatorsList('BOND_STATUS_BONDED').then(res => {
@@ -41,21 +31,13 @@ export const ViewValidators = () => {
                 setUnbondedValidators(res.data.validators)
             }
         })
-        // getValidatorState().then(res => {
-        //     if (res.data.info) {
-        //         setValidatorState(res.data.info)
-        //     }
-        // })
-
     }, [])
-
-
 
     const getFilteredValidators = () => {
         const indexesOfMissed: Array<number> = []
         const pubKeysOfMissed: Array<string> = []
         if (preCommits?.length) {
-            preCommits.map((pre, index ) => {
+            preCommits.map((pre, index) => {
                 if (pre === "nil-Vote") {
                     indexesOfMissed.push(index)
                 }
@@ -69,7 +51,7 @@ export const ViewValidators = () => {
             })
         }
         if (validators?.length) {
-            const filteredValidators: Array<{moniker: string, isSkips: boolean}> = validators?.map(v => {
+            const filteredValidators: Array<{ moniker: string, isSkips: boolean }> = validators?.map(v => {
                 if (pubKeysOfMissed.length && pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
                     return {
                         moniker: v.description.moniker,
@@ -96,7 +78,7 @@ export const ViewValidators = () => {
     }
 
     useEffect(() => {
-        getConsensusData()
+        // getConsensusData()
         const intervalId = setInterval(getConsensusData, 3000)
 
         // Очищаем интервал при размонтировании компонента
@@ -109,20 +91,23 @@ export const ViewValidators = () => {
         }
     }, [preCommits, roundState])
 
-    // const testRR = () => {
-    //     if (validators?.length) {
-    //         return validators.filter((validator, index) => {
-    //             if (validatorState?.length) {
-    //                 return validatorState.filter((valState, index) => {
-    //                     if (valState.address === validator.operator_address) {
-    //                         console.log('HUI!!!!', validator.description.moniker, 'ghjgecnbk',
-    // valState.missed_blocks_counter) } }) } }) } }   getConsensusParams().then(res => {  })  testRR()
-
     return (
         <div className={cls.ViewValidators}>
-            <div>
-                {!!filteredValidators && <BondedValidatorsList validators={filteredValidators}/>}
-                <UnbondedValidatorsList validators={unbondedValidators}/>
+            <div className={cls.wrapper}>
+                {!!filteredValidators.length
+                    ? <>
+                        <BondedValidatorsList validators={filteredValidators}/>
+                        <UnbondedValidatorsList validators={unbondedValidators}/>
+                    </>
+                    :
+                    <div className={cls.preloaderWrap}>
+                        <Preloader/>
+                        <Typography
+                            component='h1'
+                        >
+                            {'Loading'}
+                        </Typography>
+                    </div>}
             </div>
         </div>
     );

@@ -21,7 +21,8 @@
 }
 .logo_text {
   font-size: 25px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.67), rgba(143, 2, 185, 0.67));
+  //background: linear-gradient(to bottom, rgba(255, 255, 255, 0.67), rgba(143, 2, 185, 0.67));
+  background: #eeeeee;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   &:hover {
