@@ -73,7 +73,7 @@ export const ViewValidators = () => {
                     const indexA = roundState.last_validators.validators.findIndex(v => v.pub_key.value === a.pubKey);
                     const indexB = roundState.last_validators.validators.findIndex(v => v.pub_key.value === b.pubKey);
                     return indexA - indexB;
-                }
+                } else return 0
             })
             setFilteredValidators(filteredValidators)
         }

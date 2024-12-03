@@ -13,7 +13,7 @@ const LatestBlock = (props: LatestBlockProps) => {
         return (
             <div className={cls.block_wrapper}>
                 <Typography
-                    variant='h7'
+                    variant='body1'
                     className={cls.text}
                 >
                     {`Latest block #${blockHeight}`}
