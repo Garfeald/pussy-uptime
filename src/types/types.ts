@@ -34,7 +34,7 @@ export interface IValidatorsList {
     validators: Array<IValidator>
 }
 
-export interface IValidatorState {
+export interface ISigningInfos {
     address: string,
     start_height: string,
     index_offset: string,
@@ -43,8 +43,8 @@ export interface IValidatorState {
     missed_blocks_counter: string
 }
 
-export interface IValidatorStateList {
-    info: Array<IValidatorState>
+export interface ISigningInfosList {
+    info: Array<ISigningInfos>
 }
 
 export type BondStatus =

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { IRoundState, IValidator } from "../../types/types";
+import { IRoundState, ISigningInfos, IValidator } from "../../types/types";
 import { getValidatorsList } from "../../servises/get-validators-list/getValidatorsList";
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
@@ -8,6 +8,8 @@ import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsL
 import Preloader from "../preloader/Preloader";
 import { Typography } from "@mui/material";
 import LatestBlock from "../latest-block/LatestBlock";
+import { pubKeyToValcons } from "../../utils/utils";
+import { getSigningInfos } from "../../servises/get-validator-state/getValidatorState";
 
 export const ViewValidators = () => {
 
@@ -19,7 +21,9 @@ export const ViewValidators = () => {
 
     const [preCommits, setPreCommits] = useState<Array<string>>()
 
-    const [filteredValidators, setFilteredValidators] = useState<Array<{ moniker: string, isSkips: boolean }>>([])
+    const [filteredValidators, setFilteredValidators] = useState<Array<{ moniker: string, isSkips: boolean, pubKey: string, missedBlockCounter: string }>>([])
+
+    const [signingInfo, setSigningInfo] = useState<Array<ISigningInfos>>([])
 
     useEffect(() => {
         getValidatorsList('BOND_STATUS_BONDED').then(res => {
@@ -33,6 +37,16 @@ export const ViewValidators = () => {
             }
         })
     }, [])
+
+    // console.log('VALCONS!!!!', valconsToBase64('pussyvalcons1pqyl8rj0tk5wlzht4xcfvfy8jhqusa7y79j8ah'))
+
+    const getInfo = async () => {
+        await getSigningInfos().then(res => {
+            if (res.data.info) {
+                setSigningInfo(res.data.info)
+            }
+        })
+    }
 
     /**
      * method of searching for validators that have skipped blocks, and assigning them corresponding indicators, and
@@ -56,17 +70,21 @@ export const ViewValidators = () => {
             })
         }
         if (validators?.length) {
-            const filteredValidators: Array<{ moniker: string, isSkips: boolean, pubKey: string }> = validators?.map(v => {
+            const filteredValidators: Array<{ moniker: string, isSkips: boolean, pubKey: string, missedBlockCounter: string }> = validators?.map(v => {
+                const valconsAddress = pubKeyToValcons({"@type": v.consensus_pubkey.type, key: v.consensus_pubkey.key}, 'pussyvalcons')
+                const missed_blocks_counter = signingInfo.filter(info => info.address === valconsAddress).pop()?.missed_blocks_counter ?? 0
                 if (pubKeysOfMissed.length && pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
                     return {
                         moniker: v.description.moniker,
                         isSkips: true,
-                        pubKey: v.consensus_pubkey.key
+                        pubKey: v.consensus_pubkey.key,
+                        missedBlockCounter: missed_blocks_counter
                     }
                 } else return {
                     moniker: v.description.moniker,
                     isSkips: false,
-                    pubKey: v.consensus_pubkey.key
+                    pubKey: v.consensus_pubkey.key,
+                    missedBlockCounter: missed_blocks_counter
                 }
             }).sort((a, b) => {
                 if (roundState?.last_validators.validators.length) {
@@ -91,10 +109,15 @@ export const ViewValidators = () => {
     }
 
     useEffect(() => {
+        getInfo()
+        const intervalInfo = setInterval(getInfo, 3000)
         const intervalId = setInterval(getConsensusData, 3000)
 
         // Clearing the interval when unmounting a component
-        return () => clearInterval(intervalId)
+        return () => {
+            clearInterval(intervalInfo)
+            clearInterval(intervalId)
+        }
     }, [])
 
     useEffect(() => {
