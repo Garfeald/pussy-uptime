@@ -72,7 +72,7 @@ export const ViewValidators = () => {
         if (validators?.length) {
             const filteredValidators: Array<{ moniker: string, isSkips: boolean, pubKey: string, missedBlockCounter: string }> = validators?.map(v => {
                 const valconsAddress = pubKeyToValcons({"@type": v.consensus_pubkey.type, key: v.consensus_pubkey.key}, 'pussyvalcons')
-                const missed_blocks_counter = signingInfo.filter(info => info.address === valconsAddress).pop()?.missed_blocks_counter ?? 0
+                const missed_blocks_counter = signingInfo.filter(info => info.address === valconsAddress).pop()?.missed_blocks_counter ?? '0'
                 if (pubKeysOfMissed.length && pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
                     return {
                         moniker: v.description.moniker,

@@ -27,7 +27,7 @@ const BondedValidatorsList = (props: BondedValidatorsListProps) => {
                         <Typography
                             key={index}
                             component='p'
-                            className={valid.missedBlockCounter > 10 ? cls.redCount : cls.greenCount}
+                            className={parseInt(valid.missedBlockCounter) > 10 ? cls.redCount : cls.greenCount}
                             sx={{ marginLeft: '15px' }}
                         >
                             {valid.missedBlockCounter}
