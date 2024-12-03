@@ -35,8 +35,8 @@ export const ViewValidators = () => {
     }, [])
 
     /**
-     * метод поиска валидаторов пропустивших блоки, и присваивания им соответствующих индикаторов, и отсортированы по
-     * позициям в cyber
+     * method of searching for validators that have skipped blocks, and assigning them corresponding indicators, and
+     * sorted by positions in cyber
      */
     const getFilteredValidators = () => {
         const indexesOfMissed: Array<number> = []
@@ -93,7 +93,7 @@ export const ViewValidators = () => {
     useEffect(() => {
         const intervalId = setInterval(getConsensusData, 3000)
 
-        // Очищаем интервал при размонтировании компонента
+        // Clearing the interval when unmounting a component
         return () => clearInterval(intervalId)
     }, [])
 
