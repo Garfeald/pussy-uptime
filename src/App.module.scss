@@ -3,19 +3,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  padding: 20px 20px 0 20px;
-  min-height: 870px;
-  min-width: 1000px;
-}
-
-@media (max-width: 370px) {
-  .app {
-    min-height: 770px;
-  }
-}
-
-@media (max-width: 1000px) {
-  .app {
-    min-width: 0;
-  }
+  width: 80vw; /* 100% ширины экрана */
+  height: 95vh; /* 100% высоты экрана */
 }

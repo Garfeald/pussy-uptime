@@ -15,18 +15,15 @@
 .logo {
   height: 45px;
   margin-right: 20px;
-  &:hover {
-    animation: jump 1.3s linear;
-  }
 }
 .logo_text {
-  font-size: 25px;
+  //font-size: 25px;
   //background: linear-gradient(to bottom, rgba(255, 255, 255, 0.67), rgba(143, 2, 185, 0.67));
   background: #eeeeee;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   &:hover {
-    filter: drop-shadow(0 0 2em rgba(143, 2, 185, 0.67));
+    filter: drop-shadow(0 0 5em rgba(143, 2, 185, 0.67));
   }
 }
 
@@ -36,42 +33,6 @@
   background: rgba(3, 55, 181, 0.67);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-@keyframes jump {
-  0% {
-    transform: translateY(0);
-  }
-  10% {
-    transform: translateY(-20px);
-  }
-  20% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-15px);
-  }
-  40% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(0);
-  }
-  70% {
-    transform: translateY(-5px);
-  }
-  80% {
-    transform: translateY(0);
-  }
-  90% {
-    transform: translateY(-2.5px);
-  }
-  100% {
-    transform: translateY(0);
-  }
 }
 
 

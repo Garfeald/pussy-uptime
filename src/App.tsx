@@ -11,7 +11,6 @@ function App() {
                 <Header/>
                 <ViewValidators/>
             </div>
-
             <Footer/>
         </div>
     )

@@ -7,6 +7,7 @@ import { getConsensusState } from "../../servises/get-consensus-state/getConsens
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
 import Preloader from "../preloader/Preloader";
 import { Typography } from "@mui/material";
+import LatestBlock from "../latest-block/LatestBlock";
 
 export const ViewValidators = () => {
 
@@ -33,6 +34,10 @@ export const ViewValidators = () => {
         })
     }, [])
 
+    /**
+     * метод поиска валидаторов пропустивших блоки, и присваивания им соответствующих индикаторов, и отсортированы по
+     * позициям в cyber
+     */
     const getFilteredValidators = () => {
         const indexesOfMissed: Array<number> = []
         const pubKeysOfMissed: Array<string> = []
@@ -51,15 +56,23 @@ export const ViewValidators = () => {
             })
         }
         if (validators?.length) {
-            const filteredValidators: Array<{ moniker: string, isSkips: boolean }> = validators?.map(v => {
+            const filteredValidators: Array<{ moniker: string, isSkips: boolean, pubKey: string }> = validators?.map(v => {
                 if (pubKeysOfMissed.length && pubKeysOfMissed.includes(v.consensus_pubkey.key)) {
                     return {
                         moniker: v.description.moniker,
-                        isSkips: true
+                        isSkips: true,
+                        pubKey: v.consensus_pubkey.key
                     }
                 } else return {
                     moniker: v.description.moniker,
-                    isSkips: false
+                    isSkips: false,
+                    pubKey: v.consensus_pubkey.key
+                }
+            }).sort((a, b) => {
+                if (roundState?.last_validators.validators.length) {
+                    const indexA = roundState.last_validators.validators.findIndex(v => v.pub_key.value === a.pubKey);
+                    const indexB = roundState.last_validators.validators.findIndex(v => v.pub_key.value === b.pubKey);
+                    return indexA - indexB;
                 }
             })
             setFilteredValidators(filteredValidators)
@@ -78,7 +91,6 @@ export const ViewValidators = () => {
     }
 
     useEffect(() => {
-        // getConsensusData()
         const intervalId = setInterval(getConsensusData, 3000)
 
         // Очищаем интервал при размонтировании компонента
@@ -91,23 +103,33 @@ export const ViewValidators = () => {
         }
     }, [preCommits, roundState])
 
+    const drawValidators = () => {
+        if (filteredValidators.length) {
+            return (
+                <>
+                    <LatestBlock blockHeight={roundState?.height}/>
+                    <BondedValidatorsList validators={filteredValidators}/>
+                    <UnbondedValidatorsList validators={unbondedValidators}/>
+                </>
+            )
+        } else {
+            return (
+                <div className={cls.preloaderWrap}>
+                    <Preloader/>
+                    <Typography
+                        component='h1'
+                    >
+                        {'Loading'}
+                    </Typography>
+                </div>
+            )
+        }
+    }
+
     return (
         <div className={cls.ViewValidators}>
             <div className={cls.wrapper}>
-                {!!filteredValidators.length
-                    ? <>
-                        <BondedValidatorsList validators={filteredValidators}/>
-                        <UnbondedValidatorsList validators={unbondedValidators}/>
-                    </>
-                    :
-                    <div className={cls.preloaderWrap}>
-                        <Preloader/>
-                        <Typography
-                            component='h1'
-                        >
-                            {'Loading'}
-                        </Typography>
-                    </div>}
+                {drawValidators()}
             </div>
         </div>
     );
