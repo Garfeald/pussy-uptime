@@ -35,4 +35,11 @@
   -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 450px) {
+  .Header {
+    display: flex;
+    justify-content: center;
+  }
+}
+
 
