@@ -1,3 +1,3 @@
 Pussy Uptime
 
-app for tracking validators online and skipping blocks
+app for tracking validators online and skipped blocks
