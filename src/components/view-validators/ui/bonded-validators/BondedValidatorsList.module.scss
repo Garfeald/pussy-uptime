@@ -11,6 +11,9 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  & p {
+    letter-spacing: 0;
+  }
 }
 
 .moniker {
