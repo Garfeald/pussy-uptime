@@ -1,4 +1,4 @@
-import { IValidator } from "../../../../types/types";
+import { IValidator } from "../../../../shared/model/types/types";
 import cls from './UnbondedValidatorsList.module.scss'
 import { useState } from "react";
 import { Button, Typography } from "@mui/material";

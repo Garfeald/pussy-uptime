@@ -1,6 +1,6 @@
 import cls from './BondedValidatorsList.module.scss'
-import { ReactComponent as Green } from "../../../../assets/green-circle.svg";
-import { ReactComponent as Red } from "../../../../assets/red-circle.svg";
+import { ReactComponent as Green } from "../../../../shared/assets/green-circle.svg";
+import { ReactComponent as Red } from "../../../../shared/assets/red-circle.svg";
 import { Typography } from "@mui/material";
 
 interface BondedValidatorsListProps {

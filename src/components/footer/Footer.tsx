@@ -1,5 +1,5 @@
 import cls from './Footer.module.scss'
-import { ReactComponent as Telegram } from "../../assets/telegram.svg";
+import { ReactComponent as Telegram } from "../../shared/assets/telegram.svg";
 import { Typography } from "@mui/material";
 
 const Footer = () => {

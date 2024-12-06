@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { IRoundState, ISigningInfos, IValidator } from "../../types/types";
-import { getValidatorsList } from "../../servises/get-validators-list/getValidatorsList";
+import { IRoundState, ISigningInfos, IValidator } from "../../shared/model/types/types";
+import { getValidatorsList } from "../../shared/api/servises/get-validators-list/getValidatorsList";
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
-import { getConsensusState } from "../../servises/get-consensus-state/getConsensusState";
+import { getConsensusState } from "../../shared/api/servises/get-consensus-state/getConsensusState";
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
 import Preloader from "../preloader/Preloader";
 import { Typography } from "@mui/material";
 import LatestBlock from "../latest-block/LatestBlock";
-import { pubKeyToValcons } from "../../utils/utils";
-import { getSigningInfos } from "../../servises/get-validator-state/getValidatorState";
+import { pubKeyToValcons } from "../../shared/libs/utils/utils";
+import { getSigningInfos } from "../../shared/api/servises/get-validator-state/getValidatorState";
 
 export const ViewValidators = () => {
 
