@@ -15,7 +15,7 @@ const BondedValidatorsList = (props: BondedValidatorsListProps) => {
         <div className={cls.bonded}>
             {validators.map((valid, index) => {
                 return (
-                    <div className={cls.monikerWrapper}>
+                    <div className={cls.monikerWrapper} key={valid.pubKey}>
                         <Tooltip
                             title={valid.moniker}
                             placement="bottom-start"

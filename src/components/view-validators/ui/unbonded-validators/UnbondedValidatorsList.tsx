@@ -3,12 +3,12 @@ import cls from './UnbondedValidatorsList.module.scss'
 import { useState } from "react";
 import { Button, Tooltip, Typography } from "@mui/material";
 
-interface BondedValidatorsListProps {
+interface UnbondedValidatorsListProps {
     className?: string,
     validators: Array<IValidator> | null
 }
 
-const UnbondedValidatorsList = (props: BondedValidatorsListProps) => {
+const UnbondedValidatorsList = (props: UnbondedValidatorsListProps) => {
 
     const { validators } = props
 
@@ -26,7 +26,7 @@ const UnbondedValidatorsList = (props: BondedValidatorsListProps) => {
                 {show && <div className={cls.unbonded}>
                     {validators.map((valid, index) => {
                         return (
-                            <div className={cls.monikerWrapper}>
+                            <div className={cls.monikerWrapper} key={valid.consensus_pubkey.key}>
                                 <Tooltip
                                     title={valid.description.moniker}
                                     placement="bottom-start"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { IRoundState, ISigningInfos, IValidator } from "../../shared/model/types/types";
 import { getValidatorsList } from "../../shared/api/servises/get-validators-list/getValidatorsList";
 import cls from './ViewValidators.module.scss';
@@ -38,8 +38,6 @@ export const ViewValidators = () => {
         })
     }, [])
 
-    // console.log('VALCONS!!!!', valconsToBase64('pussyvalcons1pqyl8rj0tk5wlzht4xcfvfy8jhqusa7y79j8ah'))
-
     const getInfo = async () => {
         await getSigningInfos().then(res => {
             if (res.data.info) {
@@ -52,7 +50,7 @@ export const ViewValidators = () => {
      * method of searching for validators that have skipped blocks, and assigning them corresponding indicators, and
      * sorted by positions in cyber
      */
-    const getFilteredValidators = () => {
+    const getFilteredValidators = useCallback(() => {
         const indexesOfMissed: Array<number> = []
         const pubKeysOfMissed: Array<string> = []
         if (preCommits?.length) {
@@ -97,7 +95,7 @@ export const ViewValidators = () => {
         }
 
         return pubKeysOfMissed
-    }
+    }, [preCommits, roundState?.last_validators, signingInfo, validators])
 
     const getConsensusData = async () => {
         return await getConsensusState().then(res => {
@@ -124,7 +122,7 @@ export const ViewValidators = () => {
         if (preCommits && roundState) {
             getFilteredValidators()
         }
-    }, [preCommits, roundState])
+    }, [getFilteredValidators, preCommits, roundState])
 
     const drawValidators = () => {
         if (filteredValidators.length) {
