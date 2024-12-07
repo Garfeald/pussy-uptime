@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "global.d.ts", ".eslintrc.js"]
+  "include": ["src", "global.d.ts"]
 }

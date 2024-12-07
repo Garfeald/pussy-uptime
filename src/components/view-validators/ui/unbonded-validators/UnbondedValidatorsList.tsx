@@ -1,7 +1,7 @@
 import { IValidator } from "../../../../shared/model/types/types";
 import cls from './UnbondedValidatorsList.module.scss'
 import { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Button, Tooltip, Typography } from "@mui/material";
 
 interface BondedValidatorsListProps {
     className?: string,
@@ -26,12 +26,20 @@ const UnbondedValidatorsList = (props: BondedValidatorsListProps) => {
                 {show && <div className={cls.unbonded}>
                     {validators.map((valid, index) => {
                         return (
-                            <Typography
-                                key={index}
-                                component='p'
-                            >
-                                {`${index + 1}.${valid.description.moniker}`}
-                            </Typography>
+                            <div className={cls.monikerWrapper}>
+                                <Tooltip
+                                    title={valid.description.moniker}
+                                    placement="bottom-start"
+                                    arrow
+                                >
+                                    <Typography
+                                        key={index}
+                                        component='p'
+                                    >
+                                        {`${index + 1}.${valid.description.moniker}`}
+                                    </Typography>
+                                </Tooltip>
+                            </div>
                         )
                     })}
                 </div>}

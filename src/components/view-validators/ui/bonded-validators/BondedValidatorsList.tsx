@@ -1,7 +1,7 @@
 import cls from './BondedValidatorsList.module.scss'
 import { ReactComponent as Green } from "../../../../shared/assets/green-circle.svg";
 import { ReactComponent as Red } from "../../../../shared/assets/red-circle.svg";
-import { Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 
 interface BondedValidatorsListProps {
     validators: Array<{ moniker: string, isSkips: boolean, pubKey: string, missedBlockCounter: string }>
@@ -16,17 +16,23 @@ const BondedValidatorsList = (props: BondedValidatorsListProps) => {
             {validators.map((valid, index) => {
                 return (
                     <div className={cls.monikerWrapper}>
-                        <Typography
-                            key={index}
-                            component='p'
-                            sx={{ marginRight: '15px' }}
+                        <Tooltip
+                            title={valid.moniker}
+                            placement="bottom-start"
+                            arrow
                         >
-                            {`${index + 1}.${valid.moniker}`}
-                        </Typography>
+                            <Typography
+                                key={index}
+                                component='p'
+                                sx={{ marginRight: '25px' }}
+                            >
+                                {`${index + 1}.${valid.moniker}`}
+                            </Typography>
+                        </Tooltip>
                         {valid.isSkips ? <Red className={cls.red}/> : <Green className={cls.green}/>}
                         <Typography
                             key={index}
-                            component='p'
+                            component='span'
                             className={parseInt(valid.missedBlockCounter) > 10 ? cls.redCount : cls.greenCount}
                             sx={{ marginLeft: '15px' }}
                         >
