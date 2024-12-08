@@ -194,3 +194,10 @@ export interface IConsensusDumpState {
         ]
     }
 }
+
+export interface IFilteredValidator {
+    moniker: string,
+    isSkips: boolean,
+    pubKey: string,
+    missedBlockCounter: string
+}

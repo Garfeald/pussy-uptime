@@ -1,25 +1,28 @@
-import { IValidator } from "../../../../shared/model/types/types";
+import { IValidator } from "@shared/model/types/types";
 import cls from './UnbondedValidatorsList.module.scss'
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { Button, Tooltip, Typography } from "@mui/material";
 
 interface UnbondedValidatorsListProps {
-    className?: string,
     validators: Array<IValidator> | null
 }
 
-const UnbondedValidatorsList = (props: UnbondedValidatorsListProps) => {
+const UnbondedValidatorsList = memo((props: UnbondedValidatorsListProps) => {
 
     const { validators } = props
 
     const [show, setShow] = useState<boolean>(false)
+    
+    const handleSetShow = useCallback(() => {
+        return setShow(!show)
+    }, [show])
 
     if (validators?.length) {
         return (
             <div className={cls.unbonded_wrapper}>
                 <Button
                     variant='outlined'
-                    onClick={() => setShow(!show)}
+                    onClick={handleSetShow}
                 >
                     {!show ? 'Heroes at rest' : 'Hide'}
                 </Button>
@@ -46,6 +49,6 @@ const UnbondedValidatorsList = (props: UnbondedValidatorsListProps) => {
             </div>
         );
     } else return 'Validators not found'
-};
+});
 
 export default UnbondedValidatorsList;
