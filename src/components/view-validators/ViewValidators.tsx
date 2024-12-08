@@ -121,7 +121,6 @@ export const ViewValidators = () => {
                     <Preloader/>
                     <Typography
                         component='h1'
-                        style={{fontSize: '600'}}
                     >
                         {'Loading...'}
                     </Typography>
