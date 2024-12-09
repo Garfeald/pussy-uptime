@@ -3,7 +3,6 @@ import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
 import Preloader from "@shared/ui/preloader/Preloader";
-import { Typography } from "@mui/material";
 import LatestBlock from "../latest-block/LatestBlock";
 import useValidatorsStore from "@entities/validator/model/store";
 import useConsensusStore from "@entities/consensus/model/store";
@@ -82,7 +81,10 @@ export const ViewValidators = () => {
     //     return pubKeysOfMissed
     // }, [preCommits, roundState?.last_validators, setFilteredValidators, signingInfo, validators])
 
+    // const [random, setRandom] = useState<number>()
+
     useEffect(() => {
+        // setRandom(Math.floor(Math.random() * 11) + 1)
         getSigningInfo()
         const intervalInfo = setInterval(getSigningInfo, 3000)
         const intervalId = setInterval(getConsensusData, 3000)
@@ -116,16 +118,7 @@ export const ViewValidators = () => {
                 </>
             )
         } else {
-            return (
-                <div className={cls.preloaderWrap}>
-                    <Preloader/>
-                    <Typography
-                        component='h1'
-                    >
-                        {'Loading...'}
-                    </Typography>
-                </div>
-            )
+            return <Preloader/>
         }
     }
 
