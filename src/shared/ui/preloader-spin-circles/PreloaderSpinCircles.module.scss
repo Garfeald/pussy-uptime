@@ -1,0 +1,78 @@
+.preloaderWrap {
+  min-width: 320px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circlesWrapper {
+  width: 200px;
+  height: 200px;
+}
+
+.circle {
+  border: 2px solid rgba(36, 121, 215, 0.68);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.circle::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  top: -6px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 6px rgba(20, 64, 246, 0.8);
+}
+
+.circleLg {
+  width: 200px;
+  height: 200px;
+  animation: rotateCircles 3.1s linear infinite;
+}
+
+.circleMd {
+  width: 150px;
+  height: 150px;
+  animation: rotateCircles 3s linear infinite;
+}
+
+.circleMd::before {
+  width: 10px;
+  height: 10px;
+}
+
+.circleSm {
+  width: 100px;
+  height: 100px;
+  animation: rotateCircles 2.5s linear infinite;
+}
+
+.circleSm::before {
+  width: 10px;
+  height: 10px;
+}
+
+
+@keyframes rotateCircles {
+  from {
+    transform: rotate(0);
+  } to {
+      transform: rotate(360deg);
+    }
+}
