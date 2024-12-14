@@ -23,7 +23,7 @@ const useValidatorsStore = create<IValidatorStore>((set) => ({
         if (res.data.info) {
             set({ signingInfo: res.data.info })
         }
-    }),
+    }).catch(console.log),
 
     getValidators: async (status: BondStatus) => getValidatorsList(status).then(res => {
         if (res.data.validators) {
@@ -33,7 +33,7 @@ const useValidatorsStore = create<IValidatorStore>((set) => ({
                 set({ validators: res.data.validators })
             }
         }
-    }),
+    }).catch(console.log),
 
     setFilteredValidators: (validators: Array<IFilteredValidator>) => set({
         filteredValidators: validators

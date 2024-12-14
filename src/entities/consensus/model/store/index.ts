@@ -16,7 +16,7 @@ const useConsensusStore = create<IConsensusStore>((set) => ({
             set({ roundState: res.data.result.round_state })
             set({ preCommits: res.data.result.round_state.last_commit.votes })
         }
-    })
+    }).catch(console.log)
 }))
 
 export default useConsensusStore;
