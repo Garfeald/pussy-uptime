@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
@@ -8,6 +8,9 @@ import useValidatorsStore from "@entities/validator/model/store";
 import useConsensusStore from "@entities/consensus/model/store";
 import { getFilteredValidators } from "@shared/libs/utils/get-filtered-validators";
 import PreloaderSpinCircles from "@shared/ui/preloader-spin-circles/PreloaderSpinCircles";
+import TabsComponent from "@shared/ui/tabs/TabsComponent";
+import LensBlurRoundedIcon from '@mui/icons-material/LensBlurRounded';
+import BlurOffRoundedIcon from '@mui/icons-material/BlurOffRounded';
 
 export const ViewValidators = () => {
 
@@ -22,6 +25,8 @@ export const ViewValidators = () => {
     } = useValidatorsStore();
 
     const { preCommits, roundState, getConsensusData } = useConsensusStore()
+
+    const [tab, setTab] = useState<'BONDED' | 'UNBONDED'>('BONDED');
 
     useEffect(() => {
         getValidators('BOND_STATUS_BONDED')
@@ -119,13 +124,41 @@ export const ViewValidators = () => {
         }
     }
 
+    const handleChangeTab = useCallback((event: SyntheticEvent, newValue: 'BONDED' | 'UNBONDED') => {
+        setTab(newValue)
+    }, [])
+
+    const tabInfo = [
+        {label: 'UPTIME', value: 'BONDED', icon: <LensBlurRoundedIcon fontSize='large'/>},
+        {label: 'HEROES AT REST', value: 'UNBONDED', icon: <BlurOffRoundedIcon fontSize='large'/>}
+    ]
+
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const updateDimensions = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', updateDimensions);
+
+        return () => {
+            window.removeEventListener('resize', updateDimensions);
+        };
+    }, []);
+
     const drawValidators = () => {
         if (filteredValidators.length) {
             return (
                 <>
                     <LatestBlock blockHeight={roundState?.height}/>
-                    <BondedValidatorsList validators={filteredValidators}/>
-                    <UnbondedValidatorsList validators={unBondedValidators}/>
+                    <TabsComponent<'BONDED' | 'UNBONDED'>
+                        onChangeTab={handleChangeTab}
+                        tabInfo={tabInfo}
+                        tabValue={tab}
+                        direction={windowWidth <= 400 ? 'center' : 'start'}
+                    />
+                    {tab === 'BONDED' ? <BondedValidatorsList validators={filteredValidators}/> : <UnbondedValidatorsList validators={unBondedValidators}/>}
                 </>
             )
         } else {
