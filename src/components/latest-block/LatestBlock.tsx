@@ -10,7 +10,7 @@ const LatestBlock = memo((props: LatestBlockProps) => {
 
     const { blockHeight } = props
 
-    const symbolArray = ['#', '@', '%', '&', '*', '!', '0', '?', '№']
+    // const symbolArray = ['#', '@', '%', '&', '*', '!', '0', '?', '№']
 
     const [nodesArray, setNodesArray] = useState<Array<ReactNode>>([])
 

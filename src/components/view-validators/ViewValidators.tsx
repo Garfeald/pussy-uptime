@@ -125,6 +125,7 @@ export const ViewValidators = () => {
     }
 
     const handleChangeTab = useCallback((event: SyntheticEvent, newValue: 'BONDED' | 'UNBONDED') => {
+        event.preventDefault()
         setTab(newValue)
     }, [])
 
@@ -156,7 +157,7 @@ export const ViewValidators = () => {
                         onChangeTab={handleChangeTab}
                         tabInfo={tabInfo}
                         tabValue={tab}
-                        direction={windowWidth <= 400 ? 'center' : 'start'}
+                        direction={windowWidth <= 850 ? 'center' : 'start'}
                     />
                     {tab === 'BONDED' ? <BondedValidatorsList validators={filteredValidators}/> : <UnbondedValidatorsList validators={unBondedValidators}/>}
                 </>

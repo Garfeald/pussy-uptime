@@ -1,6 +1,6 @@
 import { IValidator } from "@shared/model/types/types";
 import cls from './UnbondedValidatorsList.module.scss'
-import { memo, useCallback, useState } from "react";
+import { memo } from "react";
 import { Tooltip, Typography } from "@mui/material";
 
 interface UnbondedValidatorsListProps {
@@ -10,12 +10,6 @@ interface UnbondedValidatorsListProps {
 const UnbondedValidatorsList = memo((props: UnbondedValidatorsListProps) => {
 
     const { validators } = props
-
-    const [show, setShow] = useState<boolean>(false)
-    
-    const handleSetShow = useCallback(() => {
-        return setShow(!show)
-    }, [show])
 
     if (validators?.length) {
         return (

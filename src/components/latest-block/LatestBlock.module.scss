@@ -22,5 +22,17 @@
 }
 
 .height {
-  animation: color-gradient 1.5s infinite alternate;
+  animation: color-gradient 1.5s infinite alternate, padding-animation 1s ease-in-out;
+}
+
+@keyframes padding-animation {
+  0% {
+    padding-left: 0;
+  }
+  50% {
+    padding-left:  10px;
+  }
+  100% {
+    padding-left: 0;
+  }
 }

@@ -1,25 +1,26 @@
 import { classNames, Mods } from "@shared/libs/utils/class-names/classNames";
 import cls from './TabsComponent.module.scss'
-import { SvgIconTypeMap, Tab, Tabs } from "@mui/material";
-import { SyntheticEvent } from "react";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
+import { Tab, Tabs } from "@mui/material";
+import { ReactElement, SyntheticEvent } from "react";
 
-interface TabsComponentProps<T extends object> {
+interface TabsComponentProps<T extends string> {
     tabValue: string | number,
     onChangeTab: (event: SyntheticEvent, newValue: T) => void,
-    tabInfo: Array<{label: string, value: string, icon?: OverridableComponent<SvgIconTypeMap> }>,
+    tabInfo: Array<{label: string, value: string, icon?: ReactElement }>,
     direction?: 'start' | 'center' | 'end',
-    className?: string
+    className?: string,
+    fullwidth?: boolean
 }
 
-const TabsComponent = <T extends object>(props: TabsComponentProps<T>) => {
+const TabsComponent = <T extends string>(props: TabsComponentProps<T>) => {
 
     const {
         className = '',
         tabInfo,
         tabValue,
         onChangeTab,
-        direction = 'start'
+        direction = 'start',
+        fullwidth = false
     } = props
 
     const mods: Mods = {
