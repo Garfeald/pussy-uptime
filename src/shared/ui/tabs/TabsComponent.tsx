@@ -8,8 +8,7 @@ interface TabsComponentProps<T extends string> {
     onChangeTab: (event: SyntheticEvent, newValue: T) => void,
     tabInfo: Array<{label: string, value: string, icon?: ReactElement }>,
     direction?: 'start' | 'center' | 'end',
-    className?: string,
-    fullwidth?: boolean
+    className?: string
 }
 
 const TabsComponent = <T extends string>(props: TabsComponentProps<T>) => {
@@ -19,8 +18,7 @@ const TabsComponent = <T extends string>(props: TabsComponentProps<T>) => {
         tabInfo,
         tabValue,
         onChangeTab,
-        direction = 'start',
-        fullwidth = false
+        direction = 'start'
     } = props
 
     const mods: Mods = {
