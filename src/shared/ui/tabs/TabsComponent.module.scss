@@ -1,0 +1,23 @@
+.tabsWrapper {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+
+  & button {
+    color: #3f496f;
+    font-weight: 500!important;
+    min-width: 150px;
+  }
+}
+
+.center {
+  justify-content: center;
+}
+
+.start {
+  justify-content: start;
+}
+
+.end {
+  justify-content: end;
+}
