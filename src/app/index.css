@@ -1,9 +1,9 @@
-#root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+@import '@app/styles/fonts/rrypton/fonts.scss';
 
+#root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #000000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -24,9 +24,9 @@ a:hover {
 
 html,
 body {
+  font-family: 'Monaspace Krypton', sans-serif!important;
   margin: 0;
   min-width: 320px;
-  background-color: #242424;
   height: 100%;
 }
 

@@ -2,12 +2,12 @@ import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
-import Preloader from "@shared/ui/preloader/Preloader";
+import Preloader from "@shared/ui/preloaders/preloader/Preloader";
 import LatestBlock from "../latest-block/LatestBlock";
 import useValidatorsStore from "@entities/validator/model/store";
 import useConsensusStore from "@entities/consensus/model/store";
 import { getFilteredValidators } from "@shared/libs/utils/get-filtered-validators";
-import PreloaderSpinCircles from "@shared/ui/preloader-spin-circles/PreloaderSpinCircles";
+import PreloaderSpinCircles from "@shared/ui/preloaders/preloader-spin-circles/PreloaderSpinCircles";
 import TabsComponent from "@shared/ui/tabs/TabsComponent";
 import LensBlurRoundedIcon from '@mui/icons-material/LensBlurRounded';
 import BlurOffRoundedIcon from '@mui/icons-material/BlurOffRounded';
@@ -163,7 +163,7 @@ export const ViewValidators = () => {
                 </>
             )
         } else {
-            return drawPreloader()
+            return <Preloader/>
         }
     }
 

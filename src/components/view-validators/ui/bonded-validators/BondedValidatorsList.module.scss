@@ -16,7 +16,12 @@
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 0;
+    font-size: 14px;
   }
+}
+
+.number {
+  color: #646464;
 }
 
 .moniker {
@@ -63,4 +68,15 @@
 
 .redCount {
   color: rgba(234, 2, 2, 0.67);
+}
+
+@media (max-width: 400px) {
+  .monikerWrapper {
+    width: 250px;
+    padding: 15px 20px 0 0;
+  }
+
+  .bonded {
+    justify-content: center;
+  }
 }

@@ -27,7 +27,7 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
                     component='p'
                     sx={{ marginRight: '25px' }}
                 >
-                    {`${index + 1}.${moniker}`}
+                    <span className={cls.number}>{`${index + 1}.`}</span> {`${moniker}`}
                 </Typography>
             </Tooltip>
             {isSkips ? <Red className={cls.red}/> : <Green className={cls.green}/>}

@@ -20,7 +20,7 @@ const Header = memo(() => {
                             variant='h5'
                             className={cls.logo_text}
                         >
-                            Space pussy uptime
+                            spacepussy uptime checker
                         </Typography>
                     </div>
                 </div>
