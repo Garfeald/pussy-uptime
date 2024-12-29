@@ -17,7 +17,7 @@ const Footer = memo(() => {
                     © 2024 Made By Techstur
                 </Typography>
                 <a href='tg://resolve?domain=techstur' target='_blank' rel="noreferrer">
-                    <Telegram/>
+                    <Telegram width={15} height={15}/>
                 </a>
             </div>
         );

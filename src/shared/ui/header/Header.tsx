@@ -1,5 +1,5 @@
 import cls from './Header.module.scss'
-import { ReactComponent as Logo } from "../../shared/assets/pussy_logo.svg";
+import { ReactComponent as Logo } from "../../assets/pussy_logo.svg";
 import { memo } from "react";
 import { Typography } from "@mui/material";
 import useValidatorsStore from "@entities/validator/model/store";

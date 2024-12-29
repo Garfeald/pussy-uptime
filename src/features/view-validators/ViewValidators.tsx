@@ -3,11 +3,10 @@ import cls from './ViewValidators.module.scss';
 import BondedValidatorsList from "./ui/bonded-validators/BondedValidatorsList";
 import UnbondedValidatorsList from "./ui/unbonded-validators/UnbondedValidatorsList";
 import Preloader from "@shared/ui/preloaders/preloader/Preloader";
-import LatestBlock from "../latest-block/LatestBlock";
+import LatestBlock from "@shared/ui/latest-block/LatestBlock";
 import useValidatorsStore from "@entities/validator/model/store";
 import useConsensusStore from "@entities/consensus/model/store";
 import { getFilteredValidators } from "@shared/libs/utils/get-filtered-validators";
-import PreloaderSpinCircles from "@shared/ui/preloaders/preloader-spin-circles/PreloaderSpinCircles";
 import TabsComponent from "@shared/ui/tabs/TabsComponent";
 import LensBlurRoundedIcon from '@mui/icons-material/LensBlurRounded';
 import BlurOffRoundedIcon from '@mui/icons-material/BlurOffRounded';
@@ -87,10 +86,10 @@ export const ViewValidators = () => {
     //     return pubKeysOfMissed
     // }, [preCommits, roundState?.last_validators, setFilteredValidators, signingInfo, validators])
 
-    const [random, setRandom] = useState<number | null>(null)
+    // const [random, setRandom] = useState<number | null>(null)
 
     useEffect(() => {
-        setRandom(Math.floor(Math.random() * 11) + 1)
+        // setRandom(Math.floor(Math.random() * 11) + 1)
         getSigningInfo()
         const intervalInfo = setInterval(getSigningInfo, 3000)
         const intervalId = setInterval(getConsensusData, 3000)
@@ -114,15 +113,15 @@ export const ViewValidators = () => {
         }
     }, [preCommits, roundState, setFilteredValidators, signingInfo, validators])
 
-    const drawPreloader = () => {
-        if (random) {
-            if (random > 5) {
-                return <PreloaderSpinCircles/>
-            } else return <Preloader/>
-        } else {
-            return <></>
-        }
-    }
+    // const drawPreloader = () => {
+    //     if (random) {
+    //         if (random > 5) {
+    //             return <PreloaderSpinCircles/>
+    //         } else return <Preloader/>
+    //     } else {
+    //         return <></>
+    //     }
+    // }
 
     const handleChangeTab = useCallback((event: SyntheticEvent, newValue: 'BONDED' | 'UNBONDED') => {
         event.preventDefault()
@@ -130,8 +129,8 @@ export const ViewValidators = () => {
     }, [])
 
     const tabInfo = [
-        {label: 'UPTIME', value: 'BONDED', icon: <LensBlurRoundedIcon fontSize='large'/>},
-        {label: 'HEROES AT REST', value: 'UNBONDED', icon: <BlurOffRoundedIcon fontSize='large'/>}
+        {label: 'uptime', value: 'BONDED', icon: <LensBlurRoundedIcon fontSize='large'/>},
+        {label: 'at rest', value: 'UNBONDED', icon: <BlurOffRoundedIcon fontSize='large'/>}
     ]
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -159,7 +158,10 @@ export const ViewValidators = () => {
                         tabValue={tab}
                         direction={windowWidth <= 850 ? 'center' : 'start'}
                     />
-                    {tab === 'BONDED' ? <BondedValidatorsList validators={filteredValidators}/> : <UnbondedValidatorsList validators={unBondedValidators}/>}
+                    {tab === 'BONDED'
+                        ? <BondedValidatorsList validators={filteredValidators} windowWidth={windowWidth}/>
+                        : <UnbondedValidatorsList validators={unBondedValidators}/>
+                    }
                 </>
             )
         } else {

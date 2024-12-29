@@ -12,7 +12,7 @@ const PreloaderLines = (props: PreloaderLinesProps) => {
 
     const {
         wrapper,
-        preloader1,
+        // preloader1,
         preloader2,
         line,
         line1,

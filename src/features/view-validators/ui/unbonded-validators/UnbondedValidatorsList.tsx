@@ -26,8 +26,9 @@ const UnbondedValidatorsList = memo((props: UnbondedValidatorsListProps) => {
                                     <Typography
                                         key={index}
                                         component='p'
+                                        className={cls.moniker}
                                     >
-                                        {`${index + 1}.${valid.description.moniker}`}
+                                        {`${index + 1}. ${valid.description.moniker}`}
                                     </Typography>
                                 </Tooltip>
                             </div>

@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .monikerWrapper {
@@ -10,6 +11,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
   & p {
     font-weight: 500;
     white-space: nowrap;
@@ -20,12 +22,8 @@
   }
 }
 
-.number {
-  color: #646464;
-}
-
 .moniker {
-  margin-right: 20px;
+  margin-right: 20px!important;
 }
 
 .red {
@@ -62,6 +60,22 @@
   }
 }
 
+.count {
+  position: absolute;
+  right: -10px;
+  color: rgba(95, 95, 95, 0.67);
+}
+
+.hideIndicator {
+  opacity: 0.2;
+}
+
+.hideCount {
+  display: none;
+}
+
+
+
 .greenCount {
   color: rgba(69, 241, 0, 0.67);
 }
@@ -73,10 +87,21 @@
 @media (max-width: 400px) {
   .monikerWrapper {
     width: 250px;
-    padding: 15px 20px 0 0;
+    padding: 10px 20px 10px 0;
   }
 
   .bonded {
     justify-content: center;
+    max-height: 330px;
+    overflow: auto;
+  }
+
+  .moniker {
+    font-size: 13px!important;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0;
+    margin-right: 0!important;
   }
 }

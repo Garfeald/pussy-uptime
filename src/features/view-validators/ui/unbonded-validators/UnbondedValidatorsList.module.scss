@@ -9,6 +9,11 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.moniker {
+
 }
 
 .monikerWrapper {
@@ -24,5 +29,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     letter-spacing: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .monikerWrapper {
+    width: 250px;
+    padding: 10px 20px 10px 0;
+  }
+
+  .unbonded {
+    justify-content: center;
+    max-height: 330px;
+    overflow: auto;
+  }
+
+  .moniker {
+    font-size: 13px!important;
   }
 }

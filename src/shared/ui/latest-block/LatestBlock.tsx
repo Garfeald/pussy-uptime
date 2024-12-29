@@ -44,10 +44,16 @@ const LatestBlock = memo((props: LatestBlockProps) => {
         return (
             <div className={cls.block_wrapper}>
                 <Typography
-                    variant='body1'
+                    variant='h6'
                     className={cls.text}
                 >
-                    {`Latest block #`}{nodesArray}
+                    Latest block
+                </Typography>
+                <Typography
+                    variant='h5'
+                    className={cls.count}
+                >
+                    {blockHeight}
                 </Typography>
             </div>
         );
