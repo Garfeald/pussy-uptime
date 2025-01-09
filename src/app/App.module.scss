@@ -7,11 +7,113 @@
   min-height: 95vh;
   max-width: 1400px;
   font-family: "Monaspace Argon", sans-serif;
+  z-index: 1000;
+}
+
+.stars {
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 40px 70px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 90px 40px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 160px 120px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+
+  animation: stars-blink 70s infinite, stars-rotate 400s infinite linear;
+}
+
+.stars1 {
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars1 {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 90px 60px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 180px 70px, #ddd, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 60px 110px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 100px 150px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 180px 140px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+
+  animation: stars-rise 100s infinite, stars-back-rotate 200s infinite linear;
+}
+
+.stars2 {
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars2 {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 240px 70px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 90px 240px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 130px 80px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 50px 270px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+
+  animation: stars-blink 120s infinite, stars-rotate 400s infinite linear;
+}
+
+@keyframes stars-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes stars-rise {
+  100%, 0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes stars-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes stars-back-rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }
 
 @media (max-width: 450px) {
   .app {
-    padding: 25px 15px 0 15px;
-    min-height: 85vh;
+    padding: 0 15px 0 15px;
   }
 }

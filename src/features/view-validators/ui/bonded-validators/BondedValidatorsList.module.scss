@@ -3,6 +3,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   margin-top: 10px;
+  z-index: 1000;
 }
 
 .monikerWrapper {
@@ -84,7 +85,7 @@
   color: rgba(234, 2, 2, 0.67);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .monikerWrapper {
     width: 250px;
     padding: 10px 20px 10px 0;
@@ -92,7 +93,7 @@
 
   .bonded {
     justify-content: center;
-    max-height: 330px;
+    border-radius: 5px;
     overflow: auto;
   }
 

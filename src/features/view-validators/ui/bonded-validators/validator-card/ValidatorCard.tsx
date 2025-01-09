@@ -16,7 +16,7 @@ interface ValidatorCardProps {
 
 const ValidatorCard = memo((props: ValidatorCardProps) => {
 
-    const { moniker, index, missedBlockCounter, isSkips, windowWidth} = props
+    const { moniker, index, missedBlockCounter, isSkips, windowWidth } = props
 
     const [showCount, setShowCount] = useState<boolean>(false)
 
@@ -24,7 +24,7 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
 
     const countMods: Mods = {
         [cls.redCount]: parseInt(missedBlockCounter) > 10,
-        [cls.greenCount]: parseInt(missedBlockCounter) < 10,
+        [cls.greenCount]: parseInt(missedBlockCounter) <= 10,
         [cls.hideCount]: !showCount
     }
 
@@ -48,14 +48,15 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
                             {`${index + 1}. ${moniker}`}
                         </Typography>
                     </Tooltip>
-                    <div className={classNames('', indicatorMods, [])}>{isSkips ? <Red className={cls.red}/> : <Green className={cls.green}/>}</div>
+                    <div className={classNames('', indicatorMods, [])}>{isSkips ? <Red className={cls.red}/> :
+                        <Green className={cls.green}/>}</div>
                     <Typography
                         key={index}
                         component='span'
                         className={classNames(cls.count, countMods, [])}
                         sx={{ marginLeft: '15px' }}
                     >
-                        {`${missedBlockCounter}/10000`}
+                        {`${missedBlockCounter}/9500`}
                     </Typography>
                 </div>
             )

@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: flex-start;
   min-height: 100vh;
+  overflow: auto;
 }
 
 a {
@@ -36,7 +37,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #3e3d3d;
+  background-color: rgba(76, 129, 186, 0.2);
 }
 
 ::-webkit-scrollbar-thumb {

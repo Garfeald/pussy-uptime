@@ -13,28 +13,26 @@ const UnbondedValidatorsList = memo((props: UnbondedValidatorsListProps) => {
 
     if (validators?.length) {
         return (
-            <div className={cls.unbonded_wrapper}>
-                <div className={cls.unbonded}>
-                    {validators.map((valid, index) => {
-                        return (
-                            <div className={cls.monikerWrapper} key={valid.consensus_pubkey.key}>
-                                <Tooltip
-                                    title={valid.description.moniker}
-                                    placement="bottom-start"
-                                    arrow
+            <div className={cls.unbonded}>
+                {validators.map((valid, index) => {
+                    return (
+                        <div className={cls.monikerWrapper} key={valid.consensus_pubkey.key}>
+                            <Tooltip
+                                title={valid.description.moniker}
+                                placement="bottom-start"
+                                arrow
+                            >
+                                <Typography
+                                    key={index}
+                                    component='p'
+                                    className={cls.moniker}
                                 >
-                                    <Typography
-                                        key={index}
-                                        component='p'
-                                        className={cls.moniker}
-                                    >
-                                        {`${index + 1}. ${valid.description.moniker}`}
-                                    </Typography>
-                                </Tooltip>
-                            </div>
-                        )
-                    })}
-                </div>
+                                    {`${index + 1}. ${valid.description.moniker}`}
+                                </Typography>
+                            </Tooltip>
+                        </div>
+                    )
+                })}
             </div>
         );
     } else return 'Validators not found'

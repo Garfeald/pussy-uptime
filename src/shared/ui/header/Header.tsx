@@ -3,10 +3,14 @@ import { ReactComponent as Logo } from "../../assets/pussy_logo.svg";
 import { memo } from "react";
 import { Typography } from "@mui/material";
 import useValidatorsStore from "@entities/validator/model/store";
+import LatestBlock from "@shared/ui/latest-block/LatestBlock";
+import useConsensusStore from "@entities/consensus/model/store";
 
 const Header = memo(() => {
 
     const validatorsLength = useValidatorsStore(state => state.filteredValidators.length);
+
+    const { roundState } = useConsensusStore()
 
     if (validatorsLength) {
         return (
@@ -24,6 +28,7 @@ const Header = memo(() => {
                         </Typography>
                     </div>
                 </div>
+                <LatestBlock blockHeight={roundState?.height}/>
             </div>
         );
     }

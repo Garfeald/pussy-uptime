@@ -1,12 +1,13 @@
 import cls from './BondedValidatorsList.module.scss'
 import ValidatorCard from "./validator-card/ValidatorCard";
+import { memo } from "react";
 
 interface BondedValidatorsListProps {
     validators: Array<{ moniker: string, isSkips: boolean, pubKey: string, missedBlockCounter: string }>,
     windowWidth: number
 }
 
-const BondedValidatorsList = (props: BondedValidatorsListProps) => {
+const BondedValidatorsList = memo((props: BondedValidatorsListProps) => {
 
     const { validators, windowWidth } = props
 
@@ -28,6 +29,6 @@ const BondedValidatorsList = (props: BondedValidatorsListProps) => {
             })}
         </div>
     );
-};
+});
 
 export default BondedValidatorsList;
