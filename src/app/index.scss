@@ -30,7 +30,22 @@ body {
   margin: 0;
   min-width: 320px;
   height: 100%;
+  appearance: none;
+  background-color: #000000;
 }
+
+html.dark {
+  background-color: #000000;
+}
+
+html.light {
+  background-color: #000000;
+}
+
+input[type="url"] {
+  background-color: #000000;
+}
+
 
 ::-webkit-scrollbar {
   width: 3px;
@@ -47,7 +62,7 @@ body {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #000000;
   }
   a:hover {
     color: #747bff;

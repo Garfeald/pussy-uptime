@@ -2,7 +2,7 @@ import { ReactComponent as Red } from "@shared/assets/red-circle.svg";
 import { ReactComponent as Green } from "@shared/assets/green-circle.svg";
 import { Tooltip, Typography } from "@mui/material";
 import cls from '../BondedValidatorsList.module.scss'
-import { memo, useState } from "react";
+import { memo, useMemo, useState } from "react";
 import { classNames, Mods } from "@shared/libs/utils/class-names/classNames";
 
 interface ValidatorCardProps {
@@ -28,9 +28,30 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
         [cls.hideCount]: !showCount
     }
 
-    const indicatorMods: Mods = {
-        [cls.hideIndicator]: showCount
-    }
+    const indicatorMods: Mods = useMemo(() => {
+        return {
+            [cls.hideIndicator]: showCount
+        }
+    }, [showCount])
+    
+    const drawIndicator = useMemo(() => {
+        if (parseInt(missedBlockCounter) > 0) {
+            return (
+                <div className={classNames('', indicatorMods, [])}>
+                    {isSkips
+                        ? <div className={cls.indicatorWrapper}><Red className={cls.red}/></div>
+                        : <div className={cls.indMissedBlocks}><Green className={cls.green}/><Red className={cls.red}/></div>
+                    }
+                </div>
+            )
+        } else {
+            return (
+                <div className={classNames(cls.indicatorWrapper, indicatorMods, [])}>
+                    {isSkips ? <Red className={cls.red}/> : <Green className={cls.green}/>}
+                </div>
+            )
+        }
+    }, [indicatorMods, isSkips, missedBlockCounter])
 
     const drawContent = () => {
         if (windowWidth <= 450) {
@@ -48,8 +69,7 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
                             {`${index + 1}. ${moniker}`}
                         </Typography>
                     </Tooltip>
-                    <div className={classNames('', indicatorMods, [])}>{isSkips ? <Red className={cls.red}/> :
-                        <Green className={cls.green}/>}</div>
+                    {drawIndicator}
                     <Typography
                         key={index}
                         component='span'
@@ -75,7 +95,7 @@ const ValidatorCard = memo((props: ValidatorCardProps) => {
                             {`${index + 1}. ${moniker}`}
                         </Typography>
                     </Tooltip>
-                    {isSkips ? <Red className={cls.red}/> : <Green className={cls.green}/>}
+                    {drawIndicator}
                     <Typography
                         key={index}
                         component='span'

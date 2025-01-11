@@ -30,11 +30,13 @@
 .red {
   filter: drop-shadow(0 0 1.6em rgba(234, 2, 2, 0.67));
   animation: shadow-flicker-red 0.4s infinite alternate;
+  position: absolute;
 }
 
 .green {
   filter: drop-shadow(0 0 1.28em rgba(69, 241, 0, 0.67));
   animation: shadow-flicker-green 1s infinite alternate;
+  position: absolute;
 }
 
 @keyframes shadow-flicker-red {
@@ -83,6 +85,33 @@
 
 .redCount {
   color: rgba(234, 2, 2, 0.67);
+}
+
+.indicatorWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 20px;
+  min-height: 22px;
+}
+
+.indMissedBlocks {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 20px;
+  min-height: 22px;
+  & .green {
+    position: absolute;
+    z-index: 1500;
+  }
+  & .red {
+    position: absolute;
+    z-index: 1000;
+    left: -14px;
+  }
 }
 
 @media (max-width: 450px) {
