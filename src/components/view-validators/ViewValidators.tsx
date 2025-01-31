@@ -134,7 +134,7 @@ export const ViewValidators = () => {
         {label: 'HEROES AT REST', value: 'UNBONDED', icon: <BlurOffRoundedIcon fontSize='large'/>}
     ]
 
-    const [windowWidth, setWindowWidth] = useState(0);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
         const updateDimensions = () => {
