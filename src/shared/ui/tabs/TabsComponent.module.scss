@@ -2,12 +2,6 @@
   width: 100%;
   display: flex;
   margin-bottom: 20px;
-
-  & button {
-    color: #3f496f;
-    font-weight: 500!important;
-    min-width: 150px;
-  }
 }
 
 .center {
@@ -20,4 +14,12 @@
 
 .end {
   justify-content: end;
+}
+
+@media (max-width: 450px) {
+  .tabsWrapper {
+    & svg {
+      display: none;
+    }
+  }
 }

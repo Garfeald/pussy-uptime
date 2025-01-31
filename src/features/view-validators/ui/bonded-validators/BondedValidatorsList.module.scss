@@ -1,0 +1,137 @@
+.bonded {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  z-index: 1000;
+}
+
+.monikerWrapper {
+  width: 250px;
+  padding: 20px 20px 20px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  & p {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0;
+    font-size: 14px;
+  }
+}
+
+.moniker {
+  margin-right: 20px!important;
+}
+
+.red {
+  filter: drop-shadow(0 0 1.6em rgba(234, 2, 2, 0.67));
+  animation: shadow-flicker-red 0.4s infinite alternate;
+  position: absolute;
+}
+
+.green {
+  filter: drop-shadow(0 0 1.28em rgba(69, 241, 0, 0.67));
+  animation: shadow-flicker-green 1s infinite alternate;
+  position: absolute;
+}
+
+@keyframes shadow-flicker-red {
+  0% {
+    filter: drop-shadow(0 0 1.6em rgba(234, 2, 2, 0.67));
+  }
+  50% {
+    filter: drop-shadow(0 0 1.2em rgba(234, 2, 2, 0.67));
+  }
+  100% {
+    filter: drop-shadow(0 0 1.6em rgba(234, 2, 2, 0.67));
+  }
+}
+
+@keyframes shadow-flicker-green {
+  0% {
+    filter: drop-shadow(0 0 1.28em rgba(69, 241, 0, 0.67));
+  }
+  50% {
+    filter: drop-shadow(0 0 0.96em rgba(69, 241, 0, 0.67));
+  }
+  100% {
+    filter: drop-shadow(0 0 1.28em rgba(69, 241, 0, 0.67));
+  }
+}
+
+.count {
+  position: absolute;
+  right: -10px;
+  color: rgba(95, 95, 95, 0.67);
+}
+
+.hideIndicator {
+  opacity: 0.2;
+}
+
+.hideCount {
+  display: none;
+}
+
+
+
+.greenCount {
+  color: rgba(69, 241, 0, 0.67);
+}
+
+.redCount {
+  color: rgba(234, 2, 2, 0.67);
+}
+
+.indicatorWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 20px;
+  min-height: 22px;
+}
+
+.indMissedBlocks {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 20px;
+  min-height: 22px;
+  & .green {
+    position: absolute;
+    z-index: 1500;
+  }
+  & .red {
+    position: absolute;
+    z-index: 1000;
+    left: -14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .monikerWrapper {
+    width: 250px;
+    padding: 10px 20px 10px 0;
+  }
+
+  .bonded {
+    justify-content: center;
+    border-radius: 5px;
+    overflow: auto;
+  }
+
+  .moniker {
+    font-size: 13px!important;
+    width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0;
+    margin-right: 0!important;
+  }
+}
