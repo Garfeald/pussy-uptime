@@ -22,6 +22,8 @@ function App() {
                 <div className={cls.stars}></div>
                 <div className={cls.stars1}></div>
                 <div className={cls.stars2}></div>
+                <div className={cls.stars3}></div>
+                <div className={cls.stars4}></div>
                 <div>
                     <Header/>
                     <ViewValidators/>

@@ -73,7 +73,51 @@
   background-repeat: repeat;
   background-size: 200px 200px;
 
-  animation: stars-blink 120s infinite, stars-rotate 400s infinite linear;
+  animation: stars-blink 120s infinite, stars-rotate-y-back 100s infinite linear;
+}
+
+.stars3 {
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars3 {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 120px 170px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 20px 260px, #ddd, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 40px 640px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 50px 180px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 20px 470px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+
+  animation: stars-rise 100s infinite, stars-rotate-x 100s infinite linear;
+}
+
+.stars4 {
+  //overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.stars4 {
+  background-image: radial-gradient(1px 1px at 20px 30px, #eee, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 1140px 770px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 2320px 460px, #ddd, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 5410px 140px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 4250px 680px, #fff, rgba(0, 0, 0, 0)),
+  radial-gradient(1px 1px at 1420px 770px, #ddd, rgba(0, 0, 0, 0));
+  background-repeat: repeat;
+  background-size: 200px 200px;
+
+  animation: stars-rise 100s infinite, stars-rotate-y 100s infinite linear;
 }
 
 @keyframes stars-blink {
@@ -96,7 +140,7 @@
 
 @keyframes stars-rotate {
   from {
-    transform: rotate(0deg);
+    transform: rotate(70deg);
   }
   to {
     transform: rotate(360deg);
@@ -109,6 +153,33 @@
   }
   to {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes stars-rotate-y {
+  from {
+    transform: rotateY(360deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes stars-rotate-y-back {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes stars-rotate-x {
+  from {
+    transform: rotateX(360deg);
+  }
+  to {
+    transform: rotateX(0deg);
   }
 }
 
