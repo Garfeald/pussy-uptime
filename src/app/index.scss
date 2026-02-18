@@ -3,7 +3,7 @@
 #root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
+  background-color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
@@ -31,19 +31,19 @@ body {
   min-width: 320px;
   height: 100%;
   appearance: none;
-  background-color: #000000;
+  background-color: black;
 }
 
 html.dark {
-  background-color: #000000;
+  background-color: black;
 }
 
 html.light {
-  background-color: #000000;
+  background-color: black;
 }
 
 input[type="url"] {
-  background-color: #000000;
+  background-color: black;
 }
 
 
@@ -62,7 +62,7 @@ input[type="url"] {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #000000;
+    background-color: black;
   }
   a:hover {
     color: #747bff;

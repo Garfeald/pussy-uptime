@@ -10,7 +10,7 @@ const Header = memo(() => {
 
     const validatorsLength = useValidatorsStore(state => state.filteredValidators.length);
 
-    const { roundState } = useConsensusStore()
+    const { roundState } = useConsensusStore();
 
     if (validatorsLength) {
         return (
